@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tony Yachts</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <div class="logo">
+          <a href="/"><img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Tony Yachts Logo"></a> 
+        </div>
+        <h1><li><a href="/">Home</a></li></h1>
+      <h1><li><a href="/contact">Contact</a></li></h1>
+       <h1> <li><a href="/sell">Sell your boat</a></li></h1>
+
+      </ul>
+    </nav>
+  </header>
+
+    <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 Tony Yachts. All rights reserved.</p>
+      </div>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,500 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: gill sans;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+header ul li {
+  flex: 1;
+  text-align: center;
+}
+
+header .logo img {
+  max-height: 90px;
+}
+header ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: smaller;
+  padding: 5px;
+  display: inline-block;
+}
+
+header ul li.logo a {
+  color: white;
+}
+
+
+#hero {
+  text-align: center;
+  padding: 100px 0;
+  background-image: url("index.jpg");
+  background-size: 100% auto; 
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+
+}
+
+#hero h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  font-size: 15px;
+}
+
+#hero .cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: hsla(0,0%,13%,0.9);  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 4%;
+    transition: background-color 0.3s ease;
+}
+.paragraph {
+  background-color: #fff;
+  padding: 20px;
+  font-family: gill sans;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
+  color: #333;
+}
+
+.paragraph strong {
+  font-weight: bold;
+}
+
+#hero .cta-button:hover {
+  background-color: #333;
+}
+
+/* Section styles */
+section {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+/* Footer styles */
+footer {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+input, select, textarea {
+  width: 100%; 
+  padding: 10px;  
+  border: 1px solid #ccc; 
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #0470aa;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #0470aa;
+}
+
+
+.social-media {
+  text-align: center;
+  height: 35px;
+}
+
+.social-media a {
+  display: inline-block;
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+.small-image {
+  width: 50px;
+  height: auto;
+}
+
+
+#shadow-host-companion{
+  padding: 0px;
+}
+
+.products{
+  width: 100%;
+  align-self: center;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.product{
+  position: relative;
+  background-color: var(--sectionBack);
+  width: 350px;
+  height: 100%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 40px;
+  border-radius: 10px;
+  transition: .3s;
+}
+.product:hover{
+  transform: translateY(-15px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+.container-contact {
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid #ccc; 
+  border-radius: 4px; /* Rounded borders */
+  padding: 20px;
+  color:black;
+  margin-top: 15px;
+  margin-bottom: 16px; /* Bottom margin */
+
+}
+
+.container h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.container p {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+
+
+.container .modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+
+
+.container .modal .close {
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.container .modal .prev,
+.container .modal .next {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.container .modal .prev {
+  left: 30px;
+}
+
+.container .modal .next {
+  right: 30px;
+}
+
+
+.container form h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+.container h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.container form input[type="text"],
+.container form input[type="email"],
+.container form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.container form button[type="submit"] {
+  background-color: #0470aa;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+
+.container form button[type="submit"]:hover {
+  background-color: #036496;
+
+}
+
+
+  .product-small-img {
+    width: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  
+  }
+  #infoForm {
+    margin-top: 20px;
+    display: grid;
+  }
+  
+  .product-small-img img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+  }
+  .product-info {
+    width: calc(100% - 390px);
+    margin-bottom: 10px; /* Adjust the value as needed */
+
+    }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .modal img {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+    max-height: 600px;
+  }
+  
+  .modal .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .modal .close:hover,
+  .modal .close:focus {
+    color: #bbb;
+  }
+  
+
+#calendar {
+  width: 300px;
+  height: 300px;
+  font-size: 9px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 15%;
+}
+
+#infoForm{
+  margin-top: 20px;
+  align-items: center;
+}
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 600px){
+  ul {
+    font-size: 90%;
+    }
+  #hero{
+    padding: 5%;  
+}
+section h2 {
+  font-size: 20px;
+}
+#hero .cta-button {
+  font-size: 13px;
+}
+
+.container {
+  flex-direction: column;
+}
+
+.product-info,
+.product-small-img {
+  width: 100%;
+}
+
+.product-small-img img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal img {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal .prev,
+.modal .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.modal .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.modal .prev:hover,
+.modal .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.availability form {
+  margin-top: 20px;
+}
+
+}
+

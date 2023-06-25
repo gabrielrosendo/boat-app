@@ -1,0 +1,98 @@
+FIXES/IMPROVEMENTS
+LOGO ON HEADER done
+FIX CONTACT PAGE 
+HEADER BIGGER done
+BACKGROUND IMAGE(S) ON INDEX PAGE done
+CREATE SAMPLE DB
+pw: nmbgwreacwexpeuo
+$(document).ready(function() {
+  var startDate = null; 
+  var endDate = null; 
+  
+  $('#calendar').fullCalendar({
+    selectable: true, 
+    select: function(start, end) {
+      if (startDate === null) {
+        startDate = start;
+        endDate = null;
+        $('#startDate').val(startDate.format('YYYY-MM-DD'));
+        $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
+      } else if (endDate === null) {
+        endDate = moment(end).subtract(1, 'day'); // Adjust the end date to be inclusive
+        var numDays = Math.abs(endDate.diff(startDate, 'days')) + 1;
+
+        $('#endDate').val(endDate.format('YYYY-MM-DD'));
+        $('#numDays').val(numDays);
+        $('#selectedDates').html('Selected start date: ' + startDate.format('YYYY-MM-DD') +
+        '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
+        '<br>Number of days: ' + numDays);      
+        startDate = null;
+        endDate = null;
+      }
+    },
+    eventRender: function(event, element) {
+      if (event.available) {
+        element.css('background-color', 'green');
+      } else {
+        element.css('background-color', 'red');
+      }
+    },
+    events: [
+      {
+        title: 'Unavailable',
+        start: '2023-06-05',
+        end: '2023-06-10',
+        available: false 
+      }
+    ]
+  });
+  
+});
++++
+<script>
+  $(document).ready(function() {
+    var startDate = null;
+    var endDate = null;
+    var unavailableDates = [];
+
+    {% for date in unavailable_dates %}
+      unavailableDates.push({
+        title: 'Unavailable',
+        start: '{{ date.start_date }}',
+        end: '{{ date.end_date }}',
+        available: false
+      });
+    {% endfor %}
+
+    $('#calendar').fullCalendar({
+    selectable: true, 
+    select: function(start, end) {
+      if (startDate === null) {
+        startDate = start;
+        endDate = null;
+        $('#startDate').val(startDate.format('YYYY-MM-DD'));
+        $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
+      } else if (endDate === null) {
+        endDate = moment(end).subtract(1, 'day'); // Adjust the end date to be inclusive
+        var numDays = Math.abs(endDate.diff(startDate, 'days')) + 1;
+
+        $('#endDate').val(endDate.format('YYYY-MM-DD'));
+        $('#numDays').val(numDays);
+        $('#selectedDates').html('Selected start date: ' + startDate.format('YYYY-MM-DD') +
+        '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
+        '<br>Number of days: ' + numDays);      
+        startDate = null;
+        endDate = null;
+      }
+    },
+    eventRender: function(event, element) {
+      if (event.available) {
+        element.css('background-color', 'green');
+      } else {
+        element.css('background-color', 'red');
+      }
+    },
+      events: unavailableDates
+    });
+  });
+</script>

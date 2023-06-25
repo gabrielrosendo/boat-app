@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block content %}  
+<section id="hero" style="background-image: url('{{ image_url }}');">
+    <div class="hero-content">
+      <h1>TONY YACHTS</h1>
+      <p>WHERE ADVENTURE MEETS LUXURY</p>
+      <a href="#for-sale" class="cta-button">Explore Yachts for Sale</a>
+      <a href="#for-charter" class="cta-button">Explore Yachts for Charter</a>
+
+    </div>
+  </section>
+<div class="paragraph">
+<p>
+    <strong>TONY YACHTS</strong> IS A LEADING PROVIDER OF PREMIUM YACHTS, OFFERING A DIVERSE RANGE OF VESSELS FOR SALE AND CHARTER. WITH A COMMITMENT TO EXCEPTIONAL QUALITY AND UNPARALLELED SERVICE, WE ARE DEDICATED TO DELIVERING UNFORGETTABLE EXPERIENCES ON THE WATER.
+  </p>
+</div>
+
+<section id="for-sale">
+  <div class="container">
+    <h2>Yachts for Sale</h2>
+    <div class="products">
+      <div class="product">
+        <a href="/info" style ="  text-decoration: none;  color:black;      ">
+          <div class="image">
+            <img src="static/images/listings/sample1.jpeg" alt="Listing One">
+          </div>
+          <div class="nameprice">
+            <h3>Listing One</h3>
+            <span>$9999</span>
+          </div>
+          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+        </a>
+      </div>
+      <div class="product">
+        <a href="/info" style ="  text-decoration: none;  color:black;      ">
+          <div class="image">
+            <img src="static/images/listings/sample2.jpeg" alt="Listing One">
+          </div>
+          <div class="nameprice">
+            <h3>Listing Two</h3>
+            <span>$9999</span>
+          </div>
+          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="for-charter">
+  <div class="container">
+    <h2>Yachts for Charter</h2>
+
+    <div class="products">
+      <div class="product">
+        <a href="/info" style ="  text-decoration: none;  color:black;      ">
+          <div class="image">
+            <img src="static/images/listings/sample1.jpeg" alt="Listing One">
+          </div>
+          <div class="nameprice">
+            <h3>Listing One</h3>
+            <span>$9999</span>
+          </div>
+          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+        </a>
+      </div>
+      <div class="product">
+        <a href="/info" style ="  text-decoration: none;  color:black;      ">
+          <div class="image">
+            <img src="static/images/listings/sample2.jpeg" alt="Listing One">
+          </div>
+          <div class="nameprice">
+            <h3>Listing Two</h3>
+            <span>$9999</span>
+          </div>
+          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section> 
+
+
+
+
+{% endblock %}

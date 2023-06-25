@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sell Your Boat
+{% endblock %}
+
+{% block content %}
+
+<div class="container-contact">
+  <h2 style="color: {{ color_message }};">{{ message }}</h2>
+  <h1>Sell Your Boat</h1>
+
+  <h2>Contact Us</h2>
+  <p>If you are interested in selling your boat, please provide us with the following information:</p>
+
+  <form action="/sell" method="POST">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" name="phone" placeholder="Your phone number.." required>
+<p></p>
+    <label for="boatmake">Boat Make</label>
+    <input type="text" id="boatmake" name="boatmake" placeholder="Boat make.." required>
+
+    <label for="boatmodel">Boat Model</label>
+    <input type="text" id="boatmodel" name="boatmodel" placeholder="Boat model.." required>
+
+    <label for="year">Year</label>
+    <input type="number" id="year" name="year" placeholder="Year of manufacture.." required>
+<p></p>
+    <label for="condition">Condition</label>
+    <select id="condition" name="condition" required>
+      <option value="excellent">Excellent</option>
+      <option value="good">Good</option>
+      <option value="fair">Fair</option>
+      <option value="poor">Poor</option>
+    </select>
+
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" placeholder="Asking price.." required>
+    <p></p>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" placeholder="Please provide a description of your boat.." style="height:200px" required></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+{% endblock %}
