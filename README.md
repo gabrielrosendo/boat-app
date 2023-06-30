@@ -4,13 +4,13 @@ Flask-based web application that allows users to book charter boats and view the
 
 ## How to Run
 1. Clone the repository to your local machine:
-  git clone https://github.com/your-username/charterboat.git
-2. Install the required dependencies. You can use pip to install them:
-  pip install Flask tkcalendar
-3. Before running the application, set the EMAIL_PASSWORD environment variable to allow sending emails. This variable will be used as the password for the email account used to send notifications about boat selling inquiries:
-export EMAIL_PASSWORD="your_email_password"
-python app.py
-4. The application will be accessible at http://localhost:5001.
+   git clone https://github.com/your-username/charterboat.git
+3. Install the required dependencies. You can use pip to install them:
+   pip install Flask tkcalendar
+4. Before running the application, set the EMAIL_PASSWORD environment variable to allow sending emails. This variable will be used as the password for the email account used to send notifications about boat selling inquiries:
+   export EMAIL_PASSWORD="your_email_password"
+   python app.py
+5. The application will be accessible at http://localhost:5001.
 
 ## Features
 
@@ -24,13 +24,13 @@ python app.py
 - Database: The application uses a database to store information about boats and boat reservations. 
 ## Technologies Used
 
-Python
-Flask
-HTML
-CSS
-JQUERY
-tkcalendar
-MongoDB(?)
+- Python
+- Flask
+- HTML
+- CSS
+- JQUERY
+- tkcalendar
+- MongoDB(?)
 
 ## Possible Improvements
 
