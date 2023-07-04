@@ -7,7 +7,14 @@ Sell Your Boat
 {% block content %}
 
 <div class="container-contact">
-  <h2 style="color: {{ color_message }};">{{ message }}</h2>
+  <h2 class="custom-color">{{ message }}</h2>
+
+  <style>
+    :root {
+      --color-variable: {{ color_message }};
+    }
+  </style>
+  
   <h1>Sell Your Boat</h1>
 
   <h2>Contact Us</h2>
@@ -51,9 +58,8 @@ Sell Your Boat
     <label for="description">Description</label>
     <textarea id="description" name="description" placeholder="Please provide a description of your boat.." style="height:200px" required></textarea>
 
-    <input type="submit" value="Submit">
+    <button type="submit">Submit</button>
 
   </form>
 </div>
-
 {% endblock %}

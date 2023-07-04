@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Boat Information
+{% endblock %}
+
+{% block content %}
+<script>
+  function showInquiryPopup() {
+    document.getElementById('inquiryPopup').style.display = 'flex';
+  }
+  
+  function closeInquiryPopup() {
+    document.getElementById('inquiryPopup').style.display = 'none';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var popup = document.getElementById('inquiryPopup');
+
+    window.addEventListener('click', function(event) {
+      if (event.target === popup) {
+        closeInquiryPopup();
+      }
+    });
+
+});
+</script>
+
+
+  <div id="inquiryPopup" class="popup">
+    <div class="container-buy">
+      <span class="close" onclick="closeInquiryPopup()">&times;</span>
+
+      <h2 class="custom-color">{{ message }}</h2>
+
+      <style>
+        :root {
+          --color-variable: {{ color_message }};
+        }
+      </style>
+
+      <h1>Send us an inquiry</h1>
+
+      <p>If you are interested in buying, please provide us with the following information and we will be in contact soon:</p>
+      <form action="/info-sale" method="POST">
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your phone number.." required>
+
+        <button type="submit">Submit</button>
+
+      </form>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='gallery.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
+
+<div class="container">
+  <div class="product-info">
+    <h2>XYZ Oasis</h2>
+    <p>Manufacturer: XYZ Yachts</p>
+    <p>Length: 50 feet</p>
+    <p>Year: 2023</p>
+    <p>Description: Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+    <p>Price: $1,000,000</p>
+    <div class="button-container">
+      <button class="button" onclick="showInquiryPopup()">Buy</button>
+    </div>
+  </div>
+
+  <div class="product-small-img">
+    <img src="static/images/galerySample/yacht1/pic1.jpg" alt="Image 1" onclick="showImage('static/images/galerySample/yacht1/pic1.jpg')">
+    <img src="static/images/galerySample/yacht1/pic2.jpg" alt="Image 2" onclick="showImage('static/images/galerySample/yacht1/pic2.jpg')">
+    <img src="static/images/galerySample/yacht1/pic3.jpg" alt="Image 3" onclick="showImage('static/images/galerySample/yacht1/pic3.jpg')">
+    <img src="static/images/galerySample/yacht1/pic4.jpg" alt="Image 4" onclick="showImage('static/images/galerySample/yacht1/pic4.jpg')">
+    <img src="static/images/galerySample/yacht1/pic5.jpg" alt="Image 5" onclick="showImage('static/images/galerySample/yacht1/pic5.jpg')">
+    <img src="static/images/galerySample/yacht1/pic6.jpg" alt="Image 6" onclick="showImage('static/images/galerySample/yacht1/pic6.jpg')">
+  </div>
+
+  <div class="modal">
+    <span class="close" onclick="closeImage()">&times;</span>
+    <img id="expandedImg">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+
+</div>
+
+{% endblock %}

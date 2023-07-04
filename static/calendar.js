@@ -34,8 +34,16 @@ $(document).ready(function() {
       selectable: true, 
       select: function(start, end) {
         if (startDate === null) {
+          var today = moment().startOf('day');
           startDate = start;
           endDate = null;
+          if (startDate.isBefore(today)) {
+            // Ignore the selection
+            $('#selectedDates').text('Please select a future date.');
+            startDate = null;
+            return;
+          }
+
           $('#startDate').val(startDate.format('YYYY-MM-DD'));
           $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
         } else if (endDate === null) {
@@ -49,8 +57,9 @@ $(document).ready(function() {
           '<br>Number of days: ' + numDays);      
           startDate = null;
           endDate = null;
-        }  
-      },
+            }
+          },
+  
       eventRender: function(event, element) {
         if (event.available) {
           element.css('background-color', 'green');

@@ -1,98 +1,100 @@
 FIXES/IMPROVEMENTS
-LOGO ON HEADER done
 FIX CONTACT PAGE 
-HEADER BIGGER done
-BACKGROUND IMAGE(S) ON INDEX PAGE done
+FIC CALENDAR TO HANDLE WHEN USER OICKS UNAVAILABLE DATE
 CREATE SAMPLE DB
 pw: nmbgwreacwexpeuo
-$(document).ready(function() {
-  var startDate = null; 
-  var endDate = null; 
-  
-  $('#calendar').fullCalendar({
-    selectable: true, 
-    select: function(start, end) {
-      if (startDate === null) {
-        startDate = start;
-        endDate = null;
-        $('#startDate').val(startDate.format('YYYY-MM-DD'));
-        $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
-      } else if (endDate === null) {
-        endDate = moment(end).subtract(1, 'day'); // Adjust the end date to be inclusive
-        var numDays = Math.abs(endDate.diff(startDate, 'days')) + 1;
 
-        $('#endDate').val(endDate.format('YYYY-MM-DD'));
-        $('#numDays').val(numDays);
-        $('#selectedDates').html('Selected start date: ' + startDate.format('YYYY-MM-DD') +
-        '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
-        '<br>Number of days: ' + numDays);      
-        startDate = null;
-        endDate = null;
-      }
-    },
-    eventRender: function(event, element) {
-      if (event.available) {
-        element.css('background-color', 'green');
-      } else {
-        element.css('background-color', 'red');
-      }
-    },
-    events: [
-      {
-        title: 'Unavailable',
-        start: '2023-06-05',
-        end: '2023-06-10',
-        available: false 
-      }
-    ]
-  });
-  
-});
-+++
+export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages
+
+{% extends "layout.html" %}
+
+{% block title %}
+Boat Information
+{% endblock %}
+
+{% block content %}
 <script>
-  $(document).ready(function() {
-    var startDate = null;
-    var endDate = null;
-    var unavailableDates = [];
+  function showInquiryPopup() {
+    document.getElementById('inquiryPopup').style.display = 'flex';
+  }
+  
+  function closeInquiryPopup() {
+    document.getElementById('inquiryPopup').style.display = 'none';
+  }
+  </script>
+{% if inquiry %}
+<div id="inquiryPopup" class="popup">
+    <div class="container-buy">
 
-    {% for date in unavailable_dates %}
-      unavailableDates.push({
-        title: 'Unavailable',
-        start: '{{ date.start_date }}',
-        end: '{{ date.end_date }}',
-        available: false
-      });
-    {% endfor %}
+      <h2 class="custom-color">{{ message }}</h2>
 
-    $('#calendar').fullCalendar({
-    selectable: true, 
-    select: function(start, end) {
-      if (startDate === null) {
-        startDate = start;
-        endDate = null;
-        $('#startDate').val(startDate.format('YYYY-MM-DD'));
-        $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
-      } else if (endDate === null) {
-        endDate = moment(end).subtract(1, 'day'); // Adjust the end date to be inclusive
-        var numDays = Math.abs(endDate.diff(startDate, 'days')) + 1;
+      <style>
+        :root {
+          --color-variable: {{ color_message }};
+        }
+      </style>
 
-        $('#endDate').val(endDate.format('YYYY-MM-DD'));
-        $('#numDays').val(numDays);
-        $('#selectedDates').html('Selected start date: ' + startDate.format('YYYY-MM-DD') +
-        '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
-        '<br>Number of days: ' + numDays);      
-        startDate = null;
-        endDate = null;
-      }
-    },
-    eventRender: function(event, element) {
-      if (event.available) {
-        element.css('background-color', 'green');
-      } else {
-        element.css('background-color', 'red');
-      }
-    },
-      events: unavailableDates
-    });
-  });
-</script>
+      <h1>Send us an inquiry</h1>
+
+      <h2>Contact Us</h2>
+      <p>If you are interested in buying, please provide us with the following information and we will be in contact soon:</p>
+
+      <form action="/sell" method="POST">
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your phone number.." required>
+
+        <input type="submit" value="Submit">
+
+      </form>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='gallery.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
+{% endif %}
+
+
+<div class="container">
+  <div class="product-info">
+    <h2>XYZ Oasis</h2>
+    <p>Manufacturer: XYZ Yachts</p>
+    <p>Length: 50 feet</p>
+    <p>Year: 2023</p>
+    <p>Description: Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
+    <p>Price: $1,000,000</p>
+    <form id="infoForm" action="/info-sale" method="POST">
+    <button type="submit">Buy</button>
+    </form>
+  </div>
+
+  <div class="product-small-img">
+    <img src="static/images/galerySample/yacht1/pic1.jpg" alt="Image 1" onclick="showImage('static/images/galerySample/yacht1/pic1.jpg')">
+    <img src="static/images/galerySample/yacht1/pic2.jpg" alt="Image 2" onclick="showImage('static/images/galerySample/yacht1/pic2.jpg')">
+    <img src="static/images/galerySample/yacht1/pic3.jpg" alt="Image 3" onclick="showImage('static/images/galerySample/yacht1/pic3.jpg')">
+    <img src="static/images/galerySample/yacht1/pic4.jpg" alt="Image 4" onclick="showImage('static/images/galerySample/yacht1/pic4.jpg')">
+    <img src="static/images/galerySample/yacht1/pic5.jpg" alt="Image 5" onclick="showImage('static/images/galerySample/yacht1/pic5.jpg')">
+    <img src="static/images/galerySample/yacht1/pic6.jpg" alt="Image 6" onclick="showImage('static/images/galerySample/yacht1/pic6.jpg')">
+  </div>
+
+  <div class="modal">
+    <span class="close" onclick="closeImage()">&times;</span>
+    <img id="expandedImg">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+
+</div>
+
+{% endblock %}
