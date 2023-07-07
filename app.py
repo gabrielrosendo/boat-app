@@ -37,7 +37,7 @@ def info():
     if request.method == 'POST':
         startDate = request.form.get('startDate')
         endDate = request.form.get('endDate')
-        numDays = request.form.get('numDays')
+        numDays = request.form.get('numDays') 
         # check if payment went through
         # if so, update the database with the selected dates (mark them as unavailable)
         # current handling counts start and end date as part of the rental, please verify

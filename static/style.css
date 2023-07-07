@@ -6,7 +6,6 @@
 
 body {
   font-family: gill sans;
-  background-color: #f2f2f2;
   color: #333;
 }
 
@@ -88,6 +87,16 @@ header ul li.logo a {
 
 .paragraph strong {
   font-weight: bold;
+}
+.paragraph-about {
+  background-color: #fff;
+  padding: 20px;
+  font-family: gill sans;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 auto;
+  color: #333;
 }
 
 #hero .cta-button:hover {
