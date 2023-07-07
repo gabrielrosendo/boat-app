@@ -133,7 +133,7 @@ def sell_boat():
 
         return render_template('sellboat.html', message=message, color_message=color_message)
 
-# send emails when required
+# Send emails when required
 def send_email(email_content, subject):
     # Email settings
     sender_email = "gabrielrosendo72@gmail.com"
