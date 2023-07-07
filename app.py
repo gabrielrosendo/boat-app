@@ -110,7 +110,7 @@ def sell_boat():
             firstname and lastname and email and phone and boatmake and
             boatmodel and year and condition and price and description
         ):
-            message = "Thank you! We will be in touch."
+            message = "Thank you! We will be in touch soon."
             color_message = "green"
             email_content = f"""
             First Name: {firstname}
