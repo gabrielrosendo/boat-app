@@ -6,9 +6,17 @@ from email.message import EmailMessage
 import smtplib
 import datetime
 import os
+import utils
+
 
 
 app = Flask(__name__)
+
+# Connect to DB
+boats_sale = utils.boats_sale
+
+print(boats_sale)
+collection = utils.collection
 
 
 @app.route('/')
