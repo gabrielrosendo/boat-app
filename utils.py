@@ -1,11 +1,9 @@
 import pymongo
-import ssl
-
-ssl._create_default_https_context = ssl._create_unverified_context
-
+import certifi
+ca = certifi.where()
 
 # set up a conninsection to MongoDB
-client = pymongo.MongoClient("mongodb+srv://gabrielrosendo72:IkowGwDys5bRfSn0@boats.xc4of4g.mongodb.net/")
+client = pymongo.MongoClient("mongodb+srv://gabrielrosendo72:IkowGwDys5bRfSn0@boats.xc4of4g.mongodb.net/", tlsCAFile=ca)
 
 # specify the database and collection you want to insert data into
 db = client["boats"]
