@@ -1,19 +1,50 @@
 var currentImageIndex = 0;
-var images = [
-  'static/images/galerySample/yacht1/pic1.jpg',
-  'static/images/galerySample/yacht1/pic2.jpg',
-  'static/images/galerySample/yacht1/pic3.jpg',
-  'static/images/galerySample/yacht1/pic4.jpg',
-  'static/images/galerySample/yacht1/pic5.jpg',
-  'static/images/galerySample/yacht1/pic6.jpg'
-];
+images = []
+async function getImages(boatId) {
+  var folderPath = `static/images/gallery/${boatId}/`;
+  var images = [];
 
-function showImage(imageSrc) {
+  try {
+    const response = await fetch(folderPath);
+    if (!response.ok) {
+      console.log(`Error fetching images for Boat ID: ${boatId}`);
+      return images;
+    }
+
+    const fileNames = await response.text();
+    const imageFiles = fileNames.split('\n').filter(fileName => fileName.trim() !== '');
+
+    // Assuming the image file extension is .jpg
+    images = imageFiles.map(fileName => `${folderPath}${fileName}`);
+  } catch (error) {
+    console.log(`Error fetching images for Boat ID: ${boatId}`, error);
+  }
+
+  return images;
+}
+
+
+async function showImage(boatId, imageIndex) {
+  try {
+    var images = await getImages(boatId);
+    if (images.length === 0) {
+      console.log(`No images found for Boat ID: ${boatId}`);
+      return;
+    }
+
+    currentImageIndex = imageIndex || 0;
+    if (currentImageIndex >= images.length) {
+      currentImageIndex = 0;
+    }
+
     var expandedImg = document.getElementById("expandedImg");
-    expandedImg.src = imageSrc;
+    expandedImg.src = images[currentImageIndex];
     var modal = document.getElementsByClassName("modal")[0];
     modal.style.display = "block";
+  } catch (error) {
+    console.log('Error displaying images:', error);
   }
+}
   
 function closeImage() {
     var modal = document.getElementsByClassName("modal")[0];
@@ -38,4 +69,3 @@ document.addEventListener("keydown", function (event) {
       changeImage(1); 
     }
   });
-

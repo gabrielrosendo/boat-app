@@ -25,30 +25,21 @@ Homepage
   <div class="container">
     <h2>Yachts for Sale</h2>
     <div class="products">
+      {% for boat in boats_sale %}
+
       <div class="product">
-        <a href="/info-sale" style ="  text-decoration: none;  color:black;      ">
-          <div class="image">
-            <img src="static/images/listings/sample1.jpeg" alt="Listing One">
+        <a href="/info-sale/{{boat.boat_name}}" style ="  text-decoration: none;  color:black;">
+          <div class="cover-image">
+            <img src="static/images/gallery/{{ boat._id }}/cover.jpg" alt="Listing One">
           </div>
           <div class="nameprice">
-            <h3>Listing One</h3>
-            <span>$9999</span>
+            <h3>{{ boat.boat_name }}</h3>
+            <span>{{ boat.price }}</span>
           </div>
-          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
         </a>
       </div>
-      <div class="product">
-        <a href="/info-sale" style ="  text-decoration: none;  color:black;      ">
-          <div class="image">
-            <img src="static/images/listings/sample2.jpeg" alt="Listing One">
-          </div>
-          <div class="nameprice">
-            <h3>Listing Two</h3>
-            <span>$9999</span>
-          </div>
-          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
-        </a>
-      </div>
+      {% endfor %}
+
     </div>
   </div>
 </section>

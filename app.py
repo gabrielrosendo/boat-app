@@ -14,20 +14,27 @@ app = Flask(__name__)
 
 # Connect to DB
 boats_sale = utils.boats_sale
+boats_collection = utils.sale_collection # Assuming 'boats' is the name of the collection in your database
 
-print(boats_sale)
-collection = utils.collection
+collection = utils.sale_collection
 
 
 @app.route('/')
 def index():
     image_url = url_for('static', filename='images/index.jpg')
-    return render_template('index.html', image_url=image_url)
+    return render_template('index.html', image_url=image_url, boats_sale = boats_sale)
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-
+"""
+def get_booked_dates():
+    return [
+        # get utils.charter.booked_dates
+        # 
+        booked = utils.boats_charter
+    ]
+"""
 def get_booked_dates():
     return [
         {'start_date': '2023-06-05', 'end_date': '2023-06-10'},
@@ -39,7 +46,7 @@ def get_booked_dates():
 @app.route('/info', methods=['GET', 'POST'])
 def info():
     today = datetime.date.today()
-    booked_dates = get_booked_dates()
+    booked_dates = []
     filtered_dates = [date for date in booked_dates if datetime.date.fromisoformat(date['end_date']) >= today]
 
     if request.method == 'POST':
@@ -59,8 +66,17 @@ def info():
     if request.method == 'GET':
         return render_template('charterboat.html', unavailable_dates=filtered_dates)
 
-@app.route('/info-sale', methods=['GET', 'POST'])
-def infoSale():
+@app.route('/info-sale/<string:boat_name>', methods=['GET', 'POST'])
+def infoSale(boat_name):
+    boat_info = boats_collection.find_one({'boat_name': boat_name})
+    if request.method == 'GET':
+        if boat_info:
+            return render_template('forSale.html', boat_info=boat_info)
+        else:
+            message="Boat not found"  
+            color_message = "red"
+        return render_template('forSale.html',message=message, color_message=color_message)
+
     if request.method == 'POST':
         if request.form:
             firstname = request.form['firstname']
@@ -84,9 +100,6 @@ def infoSale():
                 message = "Please fill in all fields."
                 color_message = "red"
             return render_template('forSale.html', message=message, color_message=color_message)
-        return render_template('forSale.html')
-
-    if request.method == 'GET':
         return render_template('forSale.html')
 
 @app.route('/get-dates', methods=['GET'])

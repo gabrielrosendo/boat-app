@@ -152,6 +152,7 @@ textarea {
 .small-image {
   width: 50px;
   height: auto;
+
 }
 
 #shadow-host-companion {
@@ -162,7 +163,8 @@ textarea {
   width: 100%;
   align-self: center;
   height: 70%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px;
@@ -518,4 +520,9 @@ button:hover {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.cover-image img {
+  width: 310px;
+  height: auto;
 }

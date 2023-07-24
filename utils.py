@@ -2,22 +2,22 @@ import pymongo
 import certifi
 ca = certifi.where()
 
-# set up a conninsection to MongoDB
+# set up a connection to MongoDB
 client = pymongo.MongoClient("mongodb+srv://gabrielrosendo72:IkowGwDys5bRfSn0@boats.xc4of4g.mongodb.net/", tlsCAFile=ca)
 
-# specify the database and collection you want to insert data into
 db = client["boats"]
-collection = db["boats-sale"]
+sale_collection = db["boats-sale"]
+charter_collection = db["boats-charter"]
 
-# create a dictionary with the data you want to insert
-results = collection.find()
+results_sale = sale_collection.find()
 boats_sale =[]
-for boat in results:
+for boat in results_sale:
    boats_sale.append(boat)
 
-# Print the retrieved data
-for boat in boats_sale:
-    print(boat)
+results_charter = charter_collection.find()
+boats_charter = []
+for boat in results_charter:
+   boats_charter.append(boat)
+   
 
 # Close the connection
-client.close()
