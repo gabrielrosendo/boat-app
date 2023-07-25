@@ -71,13 +71,27 @@ Boat Information
     <h2>{{boat_info.boat_name}}</h2>
     <p>{{boat_info.description}}</p>
     <p>Price: {{boat_info.price}}</p>
+    <p>id: {{boat_info._id}}</p>
     <div class="button-container">
       <button class="button" onclick="showInquiryPopup()">Buy</button>
     </div>
   </div>
 
-  <div class="thumbnails">
-    <img src="static/images/gallery/2/352515710_5974945045948038_5037277804414458085_n.jpg" alt="Thumbnail 1" onclick="showImage('1', 0)">
+  <div class="product-small-img">
+    <img src="/static/images/gallery/{{boat_info._id}}/cover.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/cover.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/ext.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/ext.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/ext2.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/ext2.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/ext3.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/ext3.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/ext4.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/ext4.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/back.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/back.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/back2.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/back2.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/front.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/front.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/int.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/int.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/out.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/out.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/pit.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/pit.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/pit2.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/pit2.jpg')">
+    <img src="/static/images/gallery/{{boat_info._id}}/toilet.jpg" alt="Image 1" onclick="showImage('/static/images/gallery/{{boat_info._id}}/toilet.jpg')">
+
   </div>
 
   <div class="modal">
