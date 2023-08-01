@@ -1,12 +1,34 @@
+function showInquiryPopup() {
+  document.getElementById('inquiryPopup').style.display = 'flex';
+}
+
+function closeInquiryPopup() {
+  document.getElementById('inquiryPopup').style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var popup = document.getElementById('inquiryPopup');
+
+  window.addEventListener('click', function(event) {
+    if (event.target === popup) {
+      closeInquiryPopup();
+    }
+  });
+
+})
 var currentImageIndex = 0;
-var images = [
-  'static/images/galerySample/yacht1/pic1.jpg',
-  'static/images/galerySample/yacht1/pic2.jpg',
-  'static/images/galerySample/yacht1/pic3.jpg',
-  'static/images/galerySample/yacht1/pic4.jpg',
-  'static/images/galerySample/yacht1/pic5.jpg',
-  'static/images/galerySample/yacht1/pic6.jpg'
-];
+
+var idData = document.getElementById("data-id");
+var boatId = idData.getAttribute('data-boat-id');
+
+var galleryData = document.getElementById("gallery-data");
+var imagesData = galleryData.getAttribute("data-images"); // Retrieve the 'data-images' attribute correctly
+var images = JSON.parse(imagesData)
+
+for (var i = 0; i < images.length; i++) {
+  images[i] = '/static/images/gallery/' + boatId + '/' + images[i];
+}
+
+console.log(images);
 
 function showImage(imageSrc) {
     var expandedImg = document.getElementById("expandedImg");

@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 from flask import Flask, jsonify, render_template, url_for, request
 from tkcalendar import *
 import smtplib
@@ -14,7 +15,7 @@ app = Flask(__name__)
 
 # Connect to DB
 boats_sale = utils.boats_sale
-boats_collection = utils.sale_collection # Assuming 'boats' is the name of the collection in your database
+boats_collection = utils.sale_collection 
 
 collection = utils.sale_collection
 
@@ -71,11 +72,16 @@ def infoSale(boat_name):
     boat_info = boats_collection.find_one({'boat_name': boat_name})
     if request.method == 'GET':
         if boat_info:
-            return render_template('forSale.html', boat_info=boat_info)
+            folder_path = f'static/images/gallery/{boat_info["_id"]}'
+
+            # List all files in the folder
+            file_names = [file for file in os.listdir(folder_path) if not file.startswith('.')]
+            images = json.dumps(file_names)
+            return render_template('forSale.html', boat_info=boat_info, image_names = images, file_names = file_names)
         else:
             message="Boat not found"  
             color_message = "red"
-        return render_template('forSale.html',message=message, color_message=color_message)
+            return render_template('forSale.html',message=message, color_message=color_message)
 
     if request.method == 'POST':
         if request.form:
