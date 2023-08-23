@@ -28,14 +28,11 @@ def index():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-"""
-def get_booked_dates():
-    return [
-        # get utils.charter.booked_dates
-        # 
-        booked = utils.boats_charter
-    ]
-"""
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 def get_booked_dates():
     return [
         {'start_date': '2023-06-05', 'end_date': '2023-06-10'},
@@ -59,9 +56,6 @@ def info():
         # current handling counts start and end date as part of the rental, please verify
         # if payment didn't go through, present an error and reload the page
         # conect with square
-        print(startDate)
-        print(endDate)
-        print(numDays)
         return render_template('charterboat.html', unavailable_dates=filtered_dates, message = "Your request is being processed. \n You will receive an email shortly with the next steps.")
 
     if request.method == 'GET':
@@ -181,4 +175,3 @@ def send_email(email_content, subject):
         smtp.sendmail(sender_email, receiver_email, em.as_string())
     return 
 
-app.run(host='0.0.0.0', port=5001)

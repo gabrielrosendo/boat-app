@@ -30,17 +30,11 @@ for (var i = 0; i < images.length; i++) {
 
 console.log(images);
 
-function showImage(imageSrc) {
-    var expandedImg = document.getElementById("expandedImg");
-    expandedImg.src = imageSrc;
-    var modal = document.getElementsByClassName("modal")[0];
-    modal.style.display = "block";
-  }
-  
-function closeImage() {
-    var modal = document.getElementsByClassName("modal")[0];
-    modal.style.display = "none";
-  }
+function showImage(imagePath) {
+  var expandedImg = document.getElementById("expandedImg");
+  expandedImg.src = imagePath;
+  expandedImg.alt = "Expanded Image";
+}
 
 
 function changeImage(n) {
