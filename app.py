@@ -1,7 +1,6 @@
 from datetime import datetime
 import json
 from flask import Flask, jsonify, render_template, url_for, request
-from tkcalendar import *
 import smtplib
 from email.message import EmailMessage
 import smtplib
