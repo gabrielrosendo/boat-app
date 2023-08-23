@@ -24,7 +24,7 @@ pexpect==4.8.0
 platformdirs==3.2.0
 ptyprocess==0.7.0
 pycodestyle==2.9.1
-gunicorn==20.1.0
+gunicorn==21.2.0
 pycparser==2.21
 pymongo==4.4.0
 PyYAML==6.0.1
