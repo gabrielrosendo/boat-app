@@ -21,7 +21,7 @@ Boat Information
 
       <h1>Send us an inquiry</h1>
 
-      <p>If you are interested in buying, please provide us with the following information and we will be in contact soon:</p>
+      <p>If you are interested in more information on this boat, please provide us with the following information and we will be in contact soon:</p>
       <form action="/info-sale" method="POST">
 
         <label for="fname">First Name</label>
@@ -47,27 +47,46 @@ Boat Information
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
 
-<div class="container">
-  <div class="product-info">
+<div class="container" style="max-width: 100%;">
     <h2>{{boat_info.boat_name}}</h2>
-    <p>{{boat_info.description}}</p>
-    <p>Price: {{boat_info.price}}</p>
-    <div class="button-container">
-      <button class="button" onclick="showInquiryPopup()">Buy</button>
+    <div class="gallery-container">
+      <div class="expanded-image">
+        {% set cover_image = '/static/images/gallery/' + boat_info._id + '/cover.jpg' %}
+        <img id="expandedImg" src="{{ cover_image }}" alt="Expanded Image" onclick="changeImage(1)">
+      </div>
+      <div class="minimized-images">
+        <div class="product-small-img">
+          <img src="{{ cover_image }}" alt="Cover Image" onclick="showImage('{{ cover_image }}')">
+          {% for image_name in file_names %}
+            {% if image_name != 'cover' %}
+              <img src="/static/images/gallery/{{ boat_info._id }}/{{ image_name }}" alt="{{ image_name.split('.')[0] }}" onclick="showImage('/static/images/gallery/{{ boat_info._id }}/{{ image_name }}')">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  </div>
+  <div class="product-info">
+    <p>CAD{{boat_info.price}}</p>
+    <p>{{boat_info.description}}</p>
 
-  <div class="product-small-img">
-    {% for image_name in file_names %}
-      <img src="/static/images/gallery/{{ boat_info._id }}/{{ image_name }}" alt="{{ image_name.split('.')[0] }}" onclick="showImage('/static/images/gallery/{{ boat_info._id }}/{{ image_name }}')">
-    {% endfor %}
   </div>
-  <div class="modal">
-    <span class="close" onclick="closeImage()">&times;</span>
-    <img id="expandedImg">
-    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-    <a class="next" onclick="changeImage(1)">&#10095;</a>
-  </div>
+  <div class="contact-info-square">
+    <h4>Have questions?</h4>
+    <h5 style="font-weight: bold;">Text us at +1 (604) 353-3404</h5>
+    <div class="social-media">
+        <a href="https://wa.me/16043533404?text=Hello%20there!%20I%20have%20a%20question.">
+            <img src="{{ url_for('static', filename='images/chat.jpg') }}" target="_blank" class="small-image">
+        </a>
+        <a href="https://www.instagram.com/tony_yachts/" target="_blank">
+            <img src="{{ url_for('static', filename='images/insta.jpg') }}" alt="Instagram Logo" class="small-image">
+        </a>
+    </div>
+    <div class="button-container">
+      <button class="button" onclick="showInquiryPopup()">Request information</button>
+    </div>
+</div>
+</div>
+
 
 </div>
 

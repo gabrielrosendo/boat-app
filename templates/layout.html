@@ -15,7 +15,25 @@
           <a href="/"><img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Tony Yachts Logo"></a> 
         </div>
         <h1><li><a href="/">HOME</a></li></h1>
-      <h1><li><a href="/contact">ABOUT</a></li></h1>
+        <h1>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">BROWSE BOATS</a>
+            <div class="dropdown-content">
+              <a href="/#for-sale">Boats for Sale</a>
+              <a href="/#for-charter">Boats for Charter</a>
+            </div>
+          </li>
+        </h1>
+        <h1>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">ABOUT</a>
+          <div class="dropdown-content">
+            <a href="/about">Who Are We</a>
+            <a href="/contact">Contact Us</a>
+
+          </div>
+        </li>
+      </h1>
        <h1> <li><a href="/sell">SELL YOUR BOAT</a></li></h1>
 
       </ul>
@@ -29,10 +47,7 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container">
         <p>&copy; 2023 Tony Yachts. All rights reserved.</p>
-      </div>
-
     </footer>
 
 </body>

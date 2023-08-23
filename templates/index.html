@@ -5,25 +5,27 @@ Homepage
 {% endblock %}
 
 {% block content %}  
+<meta name="description" content="Luxury Yachts for Sale and Charter in Vancouver">
+
 <section id="hero" style="background-image: url('{{ image_url }}');">
     <div class="hero-content">
       <h1>TONY YACHTS</h1>
       <p>WHERE ADVENTURE MEETS LUXURY</p>
-      <a href="#for-sale" class="cta-button">EXPLORE YACHTS FOR SALE</a>
-      <a href="#for-charter" class="cta-button">EXPLORE YACHTS FOR CHARTER</a>
+      <a href="#for-sale" class="cta-button">EXPLORE BOATS FOR SALE</a>
+      <a href="#for-charter" class="cta-button">EXPLORE BOATS FOR CHARTER</a>
 
     </div>
   </section>
 <div class="paragraph">
 <p>
     <strong>Tony Yachts</strong> is a leading provider of premium yachts, offering a diverse range of vessels for sale and charter.  With a commitment to exceptional quality and unparalleled service, we are dedicated to delivering unforgettable experiences on the water.
-
   </p>
+  <p><strong>All prices in Canadian Dollar.</strong></p>
 </div>
 
 <section id="for-sale">
   <div class="container">
-    <h2>Yachts for Sale</h2>
+    <h2>BOATS FOR SALE</h2>
     <div class="products">
       {% for boat in boats_sale %}
 
@@ -48,8 +50,7 @@ Homepage
 
 <section id="for-charter">
   <div class="container">
-    <h2>Yachts for Charter</h2>
-
+    <h2>BOATS FOR CHARTER</h2>
     <div class="products">
       <div class="product">
         <a href="/info" style ="  text-decoration: none;  color:black;      ">
@@ -60,7 +61,6 @@ Homepage
             <h3>Listing One</h3>
             <span>$9999</span>
           </div>
-          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
         </a>
       </div>
       <div class="product">
@@ -72,7 +72,6 @@ Homepage
             <h3>Listing Two</h3>
             <span>$9999</span>
           </div>
-          <p class="description">Embark on a journey of serenity and luxury aboard the magnificent Ocean Serenity yacht. This stunning vessel combines sleek design with top-of-the-line amenities, offering a truly unforgettable experience at sea.</p>
         </a>
       </div>
     </div>
