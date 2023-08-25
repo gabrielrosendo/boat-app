@@ -18,9 +18,7 @@ Boat Information
 
 
 <div class="container" style="max-width: 100%;">
-  {% if message %}
-  <h3 class="custom-color {% if color_message == 'green' %}green-message{% elif color_message == 'red' %}red-message{% endif %}">{{ message }}</h3>
-{% endif %}
+
 
     <h2>{{boat_info.boat_name}}</h2>
     <div class="gallery-container">
@@ -41,7 +39,7 @@ Boat Information
     </div>
   <div class="product-info">
     <p>CAD{{boat_info.price}}</p>
-    <p>{{boat_info.description}}</p>
+    <p>{{description | safe}}</p>
 
   </div>
 
@@ -55,7 +53,9 @@ Boat Information
         <div id="calendar"></div>
 
         <div id="selectedDates"></div>
-        <h4 style="color: green;">{{ message }}</h4>
+        {% if message %}
+        <h5 class="custom-color {% if color_message == 'green' %}green-message{% elif color_message == 'red' %}red-message{% endif %}">{{ message }}</h5>
+         {% endif %}        
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
 

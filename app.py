@@ -70,6 +70,10 @@ def info(boat_name):
     filtered_dates = [date for date in booked_dates if datetime.date.fromisoformat(date['end_date']) >= today]
     
     boat_info = boats_collection.find_one({'boat_name': boat_name})
+    if boat_info:
+            description = boat_info.get("description")
+            description_fixed = description.replace('\n', '<br>')
+
     folder_path = f'static/images/gallery/{boat_info["_id"]}'
     file_names = [file for file in os.listdir(folder_path) if not file.startswith('.')]
     images = json.dumps(file_names)
@@ -97,13 +101,13 @@ def info(boat_name):
                 subject = f"Boat Charter Inquiry - {email}"
                 send_email(email_content, subject)
         else:
-            message = "There was an error proccessing your request. Please try again."
+            message = "Please fill in all fields and try again."
             color_message = "red"
 
-        return render_template('charterboat.html', unavailable_dates=filtered_dates,boat_info=boat_info, image_names = images, file_names = file_names, message = message, color_message = color_message)
+        return render_template('charterboat.html', unavailable_dates=filtered_dates,boat_info=boat_info, description = description_fixed, image_names = images, file_names = file_names, message = message, color_message = color_message)
 
     if request.method == 'GET':
-        return render_template('charterboat.html', unavailable_dates=filtered_dates, boat_info=boat_info, image_names = images, file_names = file_names)
+        return render_template('charterboat.html', unavailable_dates=filtered_dates, description = description_fixed,boat_info=boat_info, image_names = images, file_names = file_names)
 
 @app.route('/info-sale/<string:boat_name>', methods=['GET', 'POST'])
 def infoSale(boat_name):
@@ -114,10 +118,10 @@ def infoSale(boat_name):
 
     if request.method == 'GET':
         if boat_info:
-            description_first = boat_info.get("description")
-            description = description_first.replace('\n', '<br>')
+            description = boat_info.get("description")
+            description_fixed = description.replace('\n', '<br>')
 
-            return render_template('forSale.html', boat_info=boat_info, description = description, image_names = images, file_names = file_names)
+            return render_template('forSale.html', boat_info=boat_info, description = description_fixed, image_names = images, file_names = file_names)
         else:
             message="Boat not found"  
             color_message = "red"
@@ -145,8 +149,11 @@ def infoSale(boat_name):
             else:
                 message = "Please fill in all fields."
                 color_message = "red"
-            return render_template('forSale.html', boat_info=boat_info, image_names = images, file_names = file_names, message=message, color_message=color_message)
-        return render_template('forSale.html')
+            
+            description = boat_info.get("description")
+            description_fixed = description.replace('\n', '<br>')
+            
+            return render_template('forSale.html', boat_info=boat_info, image_names = images, description = description_fixed, file_names = file_names, message=message, color_message=color_message)
 
 @app.route('/get-dates', methods=['GET'])
 def get_dates():
