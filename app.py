@@ -222,4 +222,3 @@ def send_email(email_content, subject):
         smtp.sendmail(sender_email, receiver_email, em.as_string())
     return 
 
-app.run(host='0.0.0.0', port=5001)
