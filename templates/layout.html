@@ -4,7 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tony Yachts</title>
+  <meta name="description" content="Tony Yachts is a leading provider of premium yachts, offering a diverse range of vessels for sale and charter.">
+  <meta name="keywords" content="Tony Yachts">
+  <link rel="canonical" href="https://boat-app-834e90efab70.herokuapp.com"/>
+	<!-- SEO -->
+  <link rel="canonical" href="https://boat-app-834e90efab70.herokuapp.com"/>
+	<meta name="referrer" content="origin" />
+	<meta property="og:site_name" content="Tony Yachts" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Tony Yachts: Yacht Sales and Services - Vancouver, BC" />
+	<meta property="og:url" content="https://boat-app-834e90efab70.herokuapp.com" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Tony Yachts: Yacht Sales and Service - Vancouver, BC" />
+	<meta name="twitter:url" content="https://boat-app-834e90efab70.herokuapp.com" />
+
+  <title>Tony Yachts: Yacht Sales and Service - Vancouver, BC</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -45,10 +59,30 @@
     {% endblock %}
   </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Tony Yachts. All rights reserved.</p>
-    </footer>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+      <div class="logo">
+          <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Tony Yachts Logo">
+      </div>
+      <div class="footer-text">
+        <p>WHERE ADVENTURE MEETS LUXURY</p>
+        <p>Phone: +1 (604)353-3404</p>
+        <p>Vancouver, BC</p>
+    </div>
+      <div class="social-media">
+        <a href="https://wa.me/16043533404?text=Hello%20there!%20I%20have%20a%20question.">
+          <img src="{{ url_for('static', filename='images/chat.jpg') }}" target="_blank" class="small-image">
+      </a>
+      <a href="https://www.instagram.com/tony_yachts/" target="_blank">
+          <img src="{{ url_for('static', filename='images/insta.jpg') }}" alt="Instagram Logo" class="small-image">
+      </a>
+    </div>
+    <p>&copy; 2023 Tony Yachts. All rights reserved.</p>
+
+  </div>
+</footer>
+
 
 </body>
 

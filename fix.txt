@@ -1,8 +1,14 @@
-FIXES/IMPROVEMENTS
+FIXES/IMPROVEMENTS BEFORE RELEASE
 FIX CONTACT PAGE 
-FIC CALENDAR TO HANDLE WHEN USER OICKS UNAVAILABLE DATE
-CREATE SAMPLE DB
-pw: nmbgwreacwexpeuo
 
 export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages
 
+/* Footer styles */
+footer {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+footer p {
+  font-size: 19px;
+}

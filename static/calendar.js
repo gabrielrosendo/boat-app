@@ -22,43 +22,50 @@ $(document).ready(function() {
     url: '/get-dates',
     method: 'GET',
     success: function(response) {
-      var unavailableDates = populateUnavailableDates(response.unavailable_dates);
-      renderCalendar(unavailableDates);
+     // var unavailableDates = populateUnavailableDates(response.unavailable_dates);
+      renderCalendar();
     },
     error: function(xhr, status, error) {
       console.error(error);
     }
   });
-  function renderCalendar(unavailableDates) {
+  function renderCalendar() {
+    var startDate = null;
+    var endDate = null;
+  
     $('#calendar').fullCalendar({
-      selectable: true, 
-      select: function(start, end) {
+      selectable: true,
+      longPressDelay: 0,
+      select: function (start, end) {
+        var today = moment().startOf('day');
         if (startDate === null) {
-          var today = moment().startOf('day');
           startDate = start;
-          endDate = null;
           if (startDate.isBefore(today)) {
             // Ignore the selection
-            $('#selectedDates').text('Please select a future date.');
+            $('#selectedDates').text('Please select a future start date.');
             startDate = null;
             return;
           }
-
+  
           $('#startDate').val(startDate.format('YYYY-MM-DD'));
           $('#selectedDates').text('Selected Start Date: ' + startDate.format('YYYY-MM-DD'));
-        } else if (endDate === null) {
-          endDate = moment(end).subtract(1, 'day'); // Adjust the end date to be inclusive
+        } else if (endDate === null && end.isAfter(startDate)) {
+          endDate = moment(end).subtract(1, 'day'); 
           var numDays = Math.abs(endDate.diff(startDate, 'days')) + 1;
-  
+
           $('#endDate').val(endDate.format('YYYY-MM-DD'));
           $('#numDays').val(numDays);
           $('#selectedDates').html('Selected start date: ' + startDate.format('YYYY-MM-DD') +
-          '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
-          '<br>Number of days: ' + numDays);      
+            '<br>Selected end date: ' + endDate.format('YYYY-MM-DD') +
+            '<br>Number of days: ' + numDays);
           startDate = null;
           endDate = null;
-            }
-          },
+        } else {
+          $('#selectedDates').text('Invalid date selection. Please choose again.');
+          startDate = null;
+          endDate = null;
+        }
+      },  
   
       eventRender: function(event, element) {
         if (event.available) {
@@ -67,6 +74,6 @@ $(document).ready(function() {
           element.css('background-color', 'red');
         }
       },
-        events: unavailableDates
+       // events: unavailableDates
     });
   }});

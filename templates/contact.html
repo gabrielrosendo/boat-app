@@ -1,23 +1,116 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-About Us
-{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tony Yachts is a leading provider of premium yachts, offering a diverse range of vessels for sale and charter.">
+  <meta name="keywords" content="Tony Yachts">
+  <link rel="canonical" href="https://boat-app-834e90efab70.herokuapp.com"/>
+	<!-- SEO -->
+  <link rel="canonical" href="https://boat-app-834e90efab70.herokuapp.com"/>
+	<meta name="referrer" content="origin" />
+	<meta property="og:site_name" content="Tony Yachts" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Tony Yachts: Yacht Sales and Services - Vancouver, BC" />
+	<meta property="og:url" content="https://boat-app-834e90efab70.herokuapp.com" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Tony Yachts: Yacht Sales and Service - Vancouver, BC" />
+	<meta name="twitter:url" content="https://boat-app-834e90efab70.herokuapp.com" />
 
-{% block content %}
+  <title>Tony Yachts: Yacht Sales and Service - Vancouver, BC</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <div class="logo">
+          <a href="/"><img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Tony Yachts Logo"></a> 
+        </div>
+        <h1><li><a href="/">HOME</a></li></h1>
+        <h1>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">BROWSE BOATS</a>
+            <div class="dropdown-content">
+              <a href="/#for-sale">Boats for Sale</a>
+              <a href="/#for-charter">Boats for Charter</a>
+            </div>
+          </li>
+        </h1>
+        <h1>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">ABOUT</a>
+          <div class="dropdown-content">
+            <a href="/about">Who Are We</a>
+            <a href="/contact">Contact Us</a>
 
-  <div class="container-contact">
-    <h2>Get in touch</h2>
-    <h3>Give us a call at +1 (604)353-3404</h3>
-    <div class="social-media">
-      <a href="https://wa.me/16043533404?text=Hello%20there!%20I%20have%20a%20question.">
-        <img src="static/images/chat.jpg" target="_blank" class="small-image">
-      </a>
-      <a href="https://www.instagram.com/tony_yachts/" target="_blank">
-        <img src="static/images/insta.jpg" alt="Instagram Logo" class="small-image">
-      </a>
-    </div>
+          </div>
+        </li>
+      </h1>
+       <h1> <li><a href="/sell">SELL YOUR BOAT</a></li></h1>
 
+      </ul>
+    </nav>
+  </header>
+
+    <main>
+      <div class="container-contact">
+        <h2>Get in touch</h2>
+        <h3>Give us a call at +1 (604)353-3404</h3>
+        <div class="contact-form">
+          {% if message %}
+          <h3 class="custom-color {% if color_message == 'green' %}green-message{% elif color_message == 'red' %}red-message{% endif %}">{{ message }}</h3>
+          {% endif %}     
+          <h1>Send us a message</h1>
+    
+          <p>If you have a question or inquiry, please fill out the form and we will be in touch:</p>
+          <form action="{{ url_for('contact') }}" method="POST">
+    
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+    
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+    
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email.." required>
+    
+            <label for="inquiry">Message</label>
+            <input type="text" id="inquiry" name="inquiry" placeholder="Your inquiry..." required>
+    
+            <button type="submit">Submit</button>
+    
+          </form>
+        </div>
+    
+    
+      </div>
+      </div>
+  </main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+      <div class="logo">
+          <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Tony Yachts Logo">
+      </div>
+      <div class="footer-text">
+        <p>WHERE ADVENTURE MEETS LUXURY</p>
+        <p>&copy; 2023 Tony Yachts. All rights reserved.</p>
+      </div>
+      <div class="social-media">
+        <a href="https://wa.me/16043533404?text=Hello%20there!%20I%20have%20a%20question.">
+          <img src="static/images/chat.jpg" target="_blank" class="small-image">
+        </a>
+        <a href="https://www.instagram.com/tony_yachts/" target="_blank">
+          <img src="static/images/insta.jpg" alt="Instagram Logo" class="small-image">
+        </a>
+      </div>
   </div>
-  </div>
-{% endblock %}
+</footer>
+
+
+</body>
+
+</html>

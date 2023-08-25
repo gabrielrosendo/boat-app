@@ -5,7 +5,6 @@ Homepage
 {% endblock %}
 
 {% block content %}  
-<meta name="description" content="Luxury Yachts for Sale and Charter in Vancouver">
 
 <section id="hero" style="background-image: url('{{ image_url }}');">
     <div class="hero-content">
@@ -52,28 +51,20 @@ Homepage
   <div class="container">
     <h2>BOATS FOR CHARTER</h2>
     <div class="products">
+      {% for boat in boats_charter %}
       <div class="product">
-        <a href="/info" style ="  text-decoration: none;  color:black;      ">
-          <div class="image">
-            <img src="static/images/listings/sample1.jpeg" alt="Listing One">
+        <a href="/info/{{boat.boat_name}}" style ="  text-decoration: none;  color:black;">
+          <div class="cover-image">
+            <img src="static/images/gallery/{{ boat._id }}/cover.jpg" alt="Listing One">
           </div>
           <div class="nameprice">
-            <h3>Listing One</h3>
-            <span>$9999</span>
+            <h3>{{ boat.boat_name }}</h3>
+            <span>{{ boat.price }}</span>
           </div>
         </a>
       </div>
-      <div class="product">
-        <a href="/info" style ="  text-decoration: none;  color:black;      ">
-          <div class="image">
-            <img src="static/images/listings/sample2.jpeg" alt="Listing One">
-          </div>
-          <div class="nameprice">
-            <h3>Listing Two</h3>
-            <span>$9999</span>
-          </div>
-        </a>
-      </div>
+      {% endfor %}
+
     </div>
   </div>
 </section> 

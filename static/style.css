@@ -25,7 +25,7 @@ header ul li {
   flex: 1;
   text-align: center;
 }
-header .logo img {
+ .logo img {
   max-height: 90px;
 }
 header ul li a {
@@ -40,7 +40,6 @@ header ul li.logo a {
 }
 #hero {
   text-align: center;
-  padding: 100px 0;
   background-image: url("index.jpg");
   background-size: 100% auto;
   background-position: center;
@@ -51,12 +50,13 @@ header ul li.logo a {
   font-size: 45px;
   margin-top: 72px;
   color: black;
-  -webkit-text-stroke: beige;
   -webkit-text-stroke-width: 2.2px;
 }
 #hero p {
-  font-size: 15px;
-  color:black;
+  font-size: 20px;
+  color: black;
+  -webkit-text-stroke: beige;
+  -webkit-text-stroke-width: 0.7px;
 }
 #hero .cta-button {
   display: inline-block;
@@ -102,15 +102,7 @@ section h2 {
   margin-bottom: 20px;
   text-align: center;
 }
-/* Footer styles */
-footer {
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-footer p {
-  font-size: 19px;
-}
+
 input, select, textarea {
   width: 100%;
   padding: 10px;
@@ -128,7 +120,6 @@ input, select, textarea {
 }
 .social-media {
   text-align: center;
-  height: 35px;
 }
 .social-media a {
   display: inline-block;
@@ -380,7 +371,6 @@ button:hover {
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 .cover-image img {
   width: 310px;
@@ -447,3 +437,55 @@ button:hover {
 .contact-info-square h3 {
   margin-top: 0;
 }
+
+.availability form {
+  color: white;
+}
+
+.green-message {
+  color: green;
+}
+
+.red-message {
+  color: red;
+}
+
+.contact-form {
+  margin-top: 40px;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: black;
+  background-color: #f9f9f9;
+}
+
+.contact-form h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+
+
+footer {
+  color: #fff;
+  padding: 40px 0;
+  border-top: 6px solid white;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+.footer-text {
+  margin-bottom: 20px;
+}
+

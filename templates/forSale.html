@@ -11,18 +11,13 @@ Boat Information
     <div class="container-buy">
       <span class="close" onclick="closeInquiryPopup()">&times;</span>
 
-      <h2 class="custom-color">{{ message }}</h2>
 
-      <style>
-        :root {
-          --color-variable: {{ color_message }};
-        }
-      </style>
-
+    
       <h1>Send us an inquiry</h1>
 
       <p>If you are interested in more information on this boat, please provide us with the following information and we will be in contact soon:</p>
-      <form action="/info-sale" method="POST">
+      <form action="{{ url_for('infoSale', boat_name=boat_info['boat_name']) }}" method="POST">
+        <input type="hidden" name="boat_name" value="{{ boat_info['boat_name'] }}">
 
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
@@ -48,6 +43,9 @@ Boat Information
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
 
 <div class="container" style="max-width: 100%;">
+  {% if message %}
+  <h3 class="custom-color {% if color_message == 'green' %}green-message{% elif color_message == 'red' %}red-message{% endif %}">{{ message }}</h3>
+  {% endif %}
     <h2>{{boat_info.boat_name}}</h2>
     <div class="gallery-container">
       <div class="expanded-image">
@@ -67,20 +65,13 @@ Boat Information
     </div>
   <div class="product-info">
     <p>CAD{{boat_info.price}}</p>
-    <p>{{boat_info.description}}</p>
+    <p>{{description | safe}}</p>
 
   </div>
   <div class="contact-info-square">
     <h4>Have questions?</h4>
     <h5 style="font-weight: bold;">Text us at +1 (604) 353-3404</h5>
-    <div class="social-media">
-        <a href="https://wa.me/16043533404?text=Hello%20there!%20I%20have%20a%20question.">
-            <img src="{{ url_for('static', filename='images/chat.jpg') }}" target="_blank" class="small-image">
-        </a>
-        <a href="https://www.instagram.com/tony_yachts/" target="_blank">
-            <img src="{{ url_for('static', filename='images/insta.jpg') }}" alt="Instagram Logo" class="small-image">
-        </a>
-    </div>
+    <p style="color: black;">OR</p>
     <div class="button-container">
       <button class="button" onclick="showInquiryPopup()">Request information</button>
     </div>

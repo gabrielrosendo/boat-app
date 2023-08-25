@@ -22,10 +22,32 @@ collection = utils.sale_collection
 @app.route('/')
 def index():
     image_url = url_for('static', filename='images/index.jpg')
-    return render_template('index.html', image_url=image_url, boats_sale = boats_sale)
+    boats_charter =  [boats_sale[0], boats_sale[1]]
+    return render_template('index.html', image_url=image_url, boats_sale = boats_sale, boats_charter = boats_charter)
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        inquiry = request.form['inquiry']
+        if firstname and lastname and inquiry and email:
+            message = "Thank you! We will be in touch."
+            color_message = "green"
+            email_content = f"""
+            First Name: {firstname}
+            Last Name: {lastname}
+            Email: {email}
+            Inquiry: {inquiry}
+            """
+            subject = f"Contact Inquiry - {email}"
+            send_email(email_content, subject)
+        else:
+            message = "There was an error processing your request. Please try again."
+            color_message = "red"
+        return render_template('contact.html', message = message, color_message = color_message)
+
     return render_template('contact.html')
 
 @app.route('/about')
@@ -40,41 +62,66 @@ def get_booked_dates():
         {'start_date': '2023-06-28', 'end_date': '2023-07-02'}
     ]
 
-@app.route('/info', methods=['GET', 'POST'])
-def info():
+@app.route('/info/<string:boat_name>', methods=['GET', 'POST'])
+def info(boat_name):
+    #fix to handle dates when neccessary
     today = datetime.date.today()
     booked_dates = []
     filtered_dates = [date for date in booked_dates if datetime.date.fromisoformat(date['end_date']) >= today]
+    
+    boat_info = boats_collection.find_one({'boat_name': boat_name})
+    folder_path = f'static/images/gallery/{boat_info["_id"]}'
+    file_names = [file for file in os.listdir(folder_path) if not file.startswith('.')]
+    images = json.dumps(file_names)
 
     if request.method == 'POST':
         startDate = request.form.get('startDate')
         endDate = request.form.get('endDate')
         numDays = request.form.get('numDays') 
-        # check if payment went through
-        # if so, update the database with the selected dates (mark them as unavailable)
-        # current handling counts start and end date as part of the rental, please verify
-        # if payment didn't go through, present an error and reload the page
-        # conect with square
-        return render_template('charterboat.html', unavailable_dates=filtered_dates, message = "Your request is being processed. \n You will receive an email shortly with the next steps.")
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        if (
+            firstname and lastname  and numDays and email
+            ):
+                message = "Thank you! We will be in touch."
+                color_message = "green"
+                email_content = f"""
+                First Name: {firstname}
+                Last Name: {lastname}
+                Email: {email}
+                Start Date: {startDate}
+                End Date: {endDate}
+                Number of Days: {numDays}
+                """
+                subject = f"Boat Charter Inquiry - {email}"
+                send_email(email_content, subject)
+        else:
+            message = "There was an error proccessing your request. Please try again."
+            color_message = "red"
+
+        return render_template('charterboat.html', unavailable_dates=filtered_dates,boat_info=boat_info, image_names = images, file_names = file_names, message = message, color_message = color_message)
 
     if request.method == 'GET':
-        return render_template('charterboat.html', unavailable_dates=filtered_dates)
+        return render_template('charterboat.html', unavailable_dates=filtered_dates, boat_info=boat_info, image_names = images, file_names = file_names)
 
 @app.route('/info-sale/<string:boat_name>', methods=['GET', 'POST'])
 def infoSale(boat_name):
     boat_info = boats_collection.find_one({'boat_name': boat_name})
+    folder_path = f'static/images/gallery/{boat_info["_id"]}'
+    file_names = [file for file in os.listdir(folder_path) if not file.startswith('.')]
+    images = json.dumps(file_names)
+
     if request.method == 'GET':
         if boat_info:
-            folder_path = f'static/images/gallery/{boat_info["_id"]}'
+            description_first = boat_info.get("description")
+            description = description_first.replace('\n', '<br>')
 
-            # List all files in the folder
-            file_names = [file for file in os.listdir(folder_path) if not file.startswith('.')]
-            images = json.dumps(file_names)
-            return render_template('forSale.html', boat_info=boat_info, image_names = images, file_names = file_names)
+            return render_template('forSale.html', boat_info=boat_info, description = description, image_names = images, file_names = file_names)
         else:
             message="Boat not found"  
             color_message = "red"
-            return render_template('forSale.html',message=message, color_message=color_message)
+            return render_template('forSale.html', message=message, color_message=color_message)
 
     if request.method == 'POST':
         if request.form:
@@ -98,7 +145,7 @@ def infoSale(boat_name):
             else:
                 message = "Please fill in all fields."
                 color_message = "red"
-            return render_template('forSale.html', message=message, color_message=color_message)
+            return render_template('forSale.html', boat_info=boat_info, image_names = images, file_names = file_names, message=message, color_message=color_message)
         return render_template('forSale.html')
 
 @app.route('/get-dates', methods=['GET'])
@@ -120,15 +167,12 @@ def sell_boat():
         email = request.form['email']
         phone = request.form['phone']
         boatmake = request.form['boatmake']
-        boatmodel = request.form['boatmodel']
         year = request.form['year']
         condition = request.form['condition']
-        price = request.form['price']
-        description = request.form['description']
 
         if (
-            firstname and lastname and email and phone and boatmake and
-            boatmodel and year and condition and price and description
+            firstname and lastname and email and phone and boatmake
+            and year and condition
         ):
             message = "Thank you! We will be in touch soon."
             color_message = "green"
@@ -138,11 +182,8 @@ def sell_boat():
             Email: {email}
             Phone: {phone}
             Boat Make: {boatmake}
-            Boat Model: {boatmodel}
             Year: {year}
             Condition: {condition}
-            Price: {price}
-            Description: {description}
             """
             subject = f"Boat Selling Inquiry - {email}"
             send_email(email_content, subject)
@@ -156,7 +197,7 @@ def sell_boat():
 # Send emails when required
 def send_email(email_content, subject):
     # Email settings
-    sender_email = "gabrielrosendo72@gmail.com"
+    sender_email = "tonyyachts0@gmail.com"
     receiver_email = "gabrielrosendo11@gmail.com"
     
     # Create the email message
@@ -174,3 +215,4 @@ def send_email(email_content, subject):
         smtp.sendmail(sender_email, receiver_email, em.as_string())
     return 
 
+app.run(host='0.0.0.0', port=5001)
