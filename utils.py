@@ -3,7 +3,7 @@ import certifi
 ca = certifi.where()
 
 # set up a connection to MongoDB
-client = pymongo.MongoClient("mongodb+srv://gabrielrosendo72:IkowGwDys5bRfSn0@boats.xc4of4g.mongodb.net/", tlsCAFile=ca)
+client = pymongo.MongoClient("mongodb+srv://[hidden]/", tlsCAFile=ca)
 
 db = client["boats"]
 sale_collection = db["boats-sale"]
