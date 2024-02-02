@@ -1,4 +1,5 @@
 # boat-app
+![Untitled design](https://github.com/gabrielrosendo/boat-app/assets/71938938/88c906dd-c250-4c69-879b-1bf25c861c32)
 
 Flask-based web application that allows users to book charter boats and view the availability of boats. The application provides a user-friendly interface for selecting available dates, making reservations, and selling boats. Website pulls information from MongoDB Database, and displays the available boats in homepage(Some for sale and some for charter).  
 
